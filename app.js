@@ -12,15 +12,32 @@ const client = new OSS({
   bucket: config.oss.bucket
 });
 
+function checkZero(i) 
+{
+    if (i < 10) {
+        i = "0" + i
+    }; 
+    return i;
+}
+
+function generateTimeFlag() {
+  let d = new Date();
+
+  var year  = d.getFullYear();
+  var month = d.getMonth() + 1;
+  var day   = d.getDate(); 
+  var hour = d.getHours();
+  var min = d.getMinutes();
+
+  month = month.checkZero()
+  day = day.checkZero()
+  hour = hour.checkZero()
+  min = min.checkZero()
+
+  return "" + year + month + day + hour + min
+}
+
 function monitor() {
-
-  let currentDate = new Date();
-  let picTimeFlag = "" + currentDate.getFullYear()
-    + currentDate.getMonth()
-    + currentDate.getDate()
-    + currentDate.getHours()
-    + currentDate.getMinutes()
-
   let myCamera = new PiCamera({
     mode: 'photo',
     output: `${ __dirname }/`+ picTimeFlag +`.jpg`,
