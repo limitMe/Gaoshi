@@ -1,11 +1,10 @@
 //Dependencies
-//const PiCamera = require('pi-camera');
+const PiCamera = require('pi-camera');
 const OSS = require('ali-oss');
 
 const config = require(`${ __dirname }/config.js`);
 
 //Init dependency tool
-/*
 const myCamera = new PiCamera({
   mode: 'photo',
   output: `${ __dirname }/test.jpg`,
@@ -13,7 +12,6 @@ const myCamera = new PiCamera({
   height: 1280,
   nopreview: false,
 });
-*/
 
 let client = new OSS({
   region: config.oss.region,
@@ -22,18 +20,16 @@ let client = new OSS({
   bucket: config.oss.bucket
 });
 
-client.put('name', `${ __dirname }/test.png`).then(function (r1) {
-  console.log('put success: %j', r1);
-}).catch(function (err) {
-  console.error('error: %j', err);
-});
-
-/*
 myCamera.snap()
   .then((result) => {
-    console.log("Yes the picture has been taken")
+    console.log("A picture has been taken")
+    client.put('name', `${ __dirname }/test.jpg`).then(function (r1) {
+      console.log('put success: %j', r1);
+    }).catch(function (err) {
+      console.error('OSS error: %j', err);
+    });
   })
   .catch((error) => {
-    console.log(error)
+    console.log('Camera error: %j', error)
   });
-*/
+
