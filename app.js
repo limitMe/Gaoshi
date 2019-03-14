@@ -1,5 +1,5 @@
 //Dependencies
-//const PiCamera = require('pi-camera');
+const PiCamera = require('pi-camera');
 const OSS = require('ali-oss');
 var Jimp = require('jimp');
 
@@ -27,9 +27,7 @@ myCamera.snap()
     Jimp.read(`${ __dirname }/test.jpg`)
       .then(result => {
         return result
-          .resize(256, 256) // resize
           .quality(60) // set JPEG quality
-          .greyscale() // set greyscale
           .write(`${ __dirname }/compressed/test.jpg`); // save
       }).then(result => {
         client.put('name', `${ __dirname }/compressed/test.jpg`)
