@@ -37,6 +37,7 @@ myCamera.snap()
             console.log('put success: %j', r1);
           }).catch(function (err) {
             console.error('OSS error: %j', err);
+          })
       })
       .catch(err => {
         console.error("Compression error: %j",err);
@@ -45,7 +46,3 @@ myCamera.snap()
   .catch((error) => {
     console.log('Camera error: %j', error)
   });
-
-
- 
-
