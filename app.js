@@ -1,6 +1,8 @@
 //Dependencies
-const PiCamera = require('pi-camera');
+//const PiCamera = require('pi-camera');
 const OSS = require('ali-oss');
+const imagemin = require('imagemin');
+const imageminJpegtran = require('imagemin-jpegtran');
 
 const config = require(`${ __dirname }/config.js`);
 
@@ -23,13 +25,27 @@ let client = new OSS({
 myCamera.snap()
   .then((result) => {
     console.log("A picture has been taken")
-    client.put('name', `${ __dirname }/test.jpg`).then(function (r1) {
-      console.log('put success: %j', r1);
-    }).catch(function (err) {
-      console.error('OSS error: %j', err);
-    });
+    imagemin([`${ __dirname }/test.jpg`], `${ __dirname }/compressed`, {
+      plugins: [
+          imageminJpegtran()
+      ]
+      })
+      .then((result) => {
+        console.log('compression complete');
+        client.put('name', `${ __dirname }/compressed/test.jpg`)
+        .then(function (r1) {
+          console.log('put success: %j', r1);
+      }).catch(function (err) {
+        console.error('OSS error: %j', err);
+      });
+    }).catch((error) => {
+        console.log('Compression error: %j', error)
+    })
   })
   .catch((error) => {
     console.log('Camera error: %j', error)
   });
+
+
+ 
 
