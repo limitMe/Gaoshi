@@ -24,23 +24,15 @@ let client = new OSS({
 myCamera.snap()
   .then((result) => {
     console.log("A picture has been taken")
-    Jimp.read(`${ __dirname }/test.jpg`)
-      .then(result => {
-        return result
-          .quality(60) // set JPEG quality
-          .write(`${ __dirname }/compressed/test.jpg`); // save
-      }).then(result => {
-        client.put('name', `${ __dirname }/compressed/test.jpg`)
-          .then(function (r1) {
-            console.log('put success: %j', r1);
-          }).catch(function (err) {
-            console.error('OSS error: %j', err);
-          })
-      })
-      .catch(err => {
-        console.error("Compression error: %j",err);
-      });
+    return Jimp.read(`${ __dirname }/test.jpg`)
+  }).then(result => {
+    console.log("Uncompressed picture read")
+    return result
+      .quality(50) // set JPEG quality
+      .write(`${ __dirname }/compressed/test.jpg`);
+  }).then(result => {
+    console.log("Conpression complete!")
+    return client.put('name', `${ __dirname }/compressed/test.jpg`)
+  }).then(function (r1) {
+    console.log('put success: %j', r1);
   })
-  .catch((error) => {
-    console.log('Camera error: %j', error)
-  });
