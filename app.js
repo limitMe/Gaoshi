@@ -12,7 +12,7 @@ const client = new OSS({
   bucket: config.oss.bucket
 });
 
-function checkZero(i) 
+function checkZero() 
 {
     if (i < 10) {
         i = "0" + i
@@ -29,10 +29,10 @@ function generateTimeFlag() {
   var hour = d.getHours();
   var min = d.getMinutes();
 
-  month = month.checkZero()
-  day = day.checkZero()
-  hour = hour.checkZero()
-  min = min.checkZero()
+  month = checkZero(month)
+  day = checkZero(day)
+  hour = checkZero(hour)
+  min = checkZero(min)
 
   return "" + year + month + day + hour + min
 }
