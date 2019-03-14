@@ -38,6 +38,8 @@ function generateTimeFlag() {
 }
 
 function monitor() {
+  let picTimeFlag = generateTimeFlag()
+
   let myCamera = new PiCamera({
     mode: 'photo',
     output: `${ __dirname }/`+ picTimeFlag +`.jpg`,
@@ -63,7 +65,7 @@ function monitor() {
   })
 }
 
-
+monitor();
 setInterval(() => {
-  monitor()
+  monitor();
 }, 60*1000);
