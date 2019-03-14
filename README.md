@@ -19,4 +19,6 @@ https://www.instructables.com/id/Install-Nodejs-and-Npm-on-Raspberry-Pi/
 
 We also use git to pull all of our codes onto Raspberry Pi. Defaultly we use `~` folder.
 
-We use `https://github.com/jperkin/node-rpio` as our default RPIO dependency.
+`npm install rpio` We use `https://github.com/jperkin/node-rpio` as our default RPIO dependency.
+
+`npm install ali-oss` provides cloud storage service
