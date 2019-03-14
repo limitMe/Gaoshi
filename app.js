@@ -57,7 +57,7 @@ function monitor() {
       .write(`${ __dirname }/compressed/`+ picTimeFlag +`.jpg`);
   }).then(result => {
     console.log("Conpression complete!")
-    return client.put('name', `${ __dirname }/compressed/`+ picTimeFlag +`.jpg`)
+    return client.put(picTimeFlag, `${ __dirname }/compressed/`+ picTimeFlag +`.jpg`)
   }).then(function (r1) {
     console.log('put success: %j', r1);
   })
