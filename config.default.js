@@ -1,5 +1,6 @@
 module.exports = {
-    oss : {
+    locale: "Place",
+    oss: {
         region: "oss-cn-shanghai",
         bucket: "limme-gaoshi",
         accessKeyId: "",

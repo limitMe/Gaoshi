@@ -12,7 +12,7 @@ const client = new OSS({
   bucket: config.oss.bucket
 });
 
-function checkZero() 
+function checkZero(i) 
 {
     if (i < 10) {
         i = "0" + i
@@ -59,7 +59,8 @@ function monitor() {
       .write(`${ __dirname }/compressed/`+ picTimeFlag +`.jpg`);
   }).then(result => {
     console.log("Conpression complete!")
-    return client.put(picTimeFlag, `${ __dirname }/compressed/`+ picTimeFlag +`.jpg`)
+    return client.put(config.locale + picTimeFlag,
+       `${ __dirname }/compressed/`+ picTimeFlag +`.jpg`)
   }).then(function (r1) {
     console.log('put success: %j', r1);
   })
@@ -68,4 +69,4 @@ function monitor() {
 monitor();
 setInterval(() => {
   monitor();
-}, 60*1000);
+}, 30*60*1000);
