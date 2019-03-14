@@ -69,4 +69,4 @@ function monitor() {
 monitor();
 setInterval(() => {
   monitor();
-}, 30*60*1000);
+}, config.interval);
