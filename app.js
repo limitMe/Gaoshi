@@ -1,16 +1,17 @@
 //Dependencies
 const PiCamera = require('pi-camera');
 const OSS = require('ali-oss');
-var Jimp = require('jimp');
+//var Jimp = require('jimp');
 
-const config = require(`${ __dirname }/config.js`);
-
+//const config = require(`${ __dirname }/config.js`);
+/*
 const client = new OSS({
   region: config.oss.region,
   accessKeyId: config.oss.accessKeyId,
   accessKeySecret: config.oss.accessKeySecret,
   bucket: config.oss.bucket
 });
+*/
 
 function checkZero(i) 
 {
@@ -49,6 +50,7 @@ function monitor() {
   });
 
   myCamera.snap()
+  /*
   .then((result) => {
     console.log("A picture has been taken")
     return Jimp.read(`${ __dirname }/`+ picTimeFlag +`.jpg`)
@@ -64,6 +66,7 @@ function monitor() {
   }).then(function (r1) {
     console.log('put success: %j', r1);
   })
+  */
 }
 
 monitor();
