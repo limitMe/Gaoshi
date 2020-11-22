@@ -3,7 +3,7 @@ const PiCamera = require('pi-camera');
 const OSS = require('ali-oss');
 //var Jimp = require('jimp');
 
-//const config = require(`${ __dirname }/config.js`);
+const config = require(`${ __dirname }/config.js`);
 /*
 const client = new OSS({
   region: config.oss.region,
